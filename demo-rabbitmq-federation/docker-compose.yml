@@ -1,0 +1,25 @@
+
+services:
+  rabbitmq-downstream:
+    image: rabbitmq:3.13-management
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: 1234
+    volumes:
+      - "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
+    hostname: rabbitmq-downstream
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+  rabbitmq-upstream:
+    image: rabbitmq:3.13-management
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: 1234
+    volumes:
+      - "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
+    hostname: rabbitmq-upstream
+    ports:
+      - '5673:5672'
+      - '15673:15672'
